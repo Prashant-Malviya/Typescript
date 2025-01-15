@@ -241,19 +241,18 @@
 //   public id: string = String(Math.random() * 1000);
 
 //   constructor(
-//     public name: string,  
-//    public  price: number,  
-//    public  stock: number 
+//     public name: string,
+//    public  price: number,
+//    public  stock: number
 //   ) {}
 //    getId = () => this.id;
 // }
 
 // const product1 = new Product("Mackbook",2020020,30)
 
-
 // ----------------------------------------------
 
-// Type Assertion 
+// Type Assertion
 
 // const btn = document.getElementById("btn") as HTMLElement;
 // const btn = document.getElementById("btn")!;
@@ -264,15 +263,13 @@
 
 // img.src = 'https://www.google.com/'
 
-
 // btn.onclick
 
 // -----------------------------
-// accesing form 
+// accesing form
 // const form = document.getElementById("myform") as HTMLFormElement;
 
 // const myinput = document.querySelector("form > input") as HTMLInputElement
-
 
 // form.onsubmit=(e: SubmitEvent)=>{
 
@@ -286,11 +283,11 @@
 
 //     const body = document.querySelector("body");
 //     body?.append(h2)
-    
+
 // }
 
 // -----------------------------------
-// Type Assertion 
+// Type Assertion
 
 // interface Person{
 //     // name:string,
@@ -320,10 +317,9 @@
 
 // console.log(key as keyof Person);
 
-
 // ---------------------------------------
 
-// Type Utitlity 
+// Type Utitlity
 
 // Partial<Type>
 // Required<Type>
@@ -338,7 +334,6 @@
 // ReturnType<Type>
 // InstanceType<Type>
 
-
 // Partial<Type> --------------------------
 
 // type User = {
@@ -347,7 +342,6 @@
 // }
 
 // type User2 = Partial<User>
-
 
 // Required<Type> - opposite of partial <---------------
 
@@ -384,8 +378,7 @@
 // type User = {
 //     name: string;
 //     email: string;
-// } 
-
+// }
 
 // type User2 = Record<"name"|"email"|"gender",string>
 
@@ -404,8 +397,6 @@
 //     jack : {age : 32},
 // }
 
-
-
 // Pick <Type,Keys> ---------------------------
 
 // interface OrderInfo{
@@ -419,7 +410,7 @@
 
 // type ShippingInfo = Pick<OrderInfo,"city"|"state"|"country">
 
-// Omit<Type,Keys> 
+// Omit<Type,Keys>
 
 // interface ShippingInfo {
 //     city: string,
@@ -429,14 +420,11 @@
 
 // type Random = Omit<ShippingInfo,"country">
 
-
-
 // Exclude<TypeError,ExcludedUnion>
 
 // type MyUnion = string | number | boolean
 
 // type Random = Exclude<MyUnion, boolean >
-
 
 // Extract<TypeError,Union>
 
@@ -444,42 +432,156 @@
 
 // type Random = Extract<MyUnion, boolean >
 
-
 // NonNullable<Type>
 
 // type MyUnion = string | number | boolean | null | undefined
 
 // type Random = NonNullable<MyUnion>
 
-
 // Parameters<Type>
 
 // const myFunc = (a:number,b:string)=>{
 //     console.log(a+b);
-    
+
 // }
 
 // type Random = Parameters<typeof myFunc>
 
-
 // ConstructorParameters<Type>
+// class SampleClass {
+//     constructor(public s: string, public t: string) {}
+// }
 
-
-
-
-
-
-
+// type Random = ConstructorParameters<typeof SampleClass >
 
 // ReturnType<Type>
+
+// const myfunc = (a: number, b: string):string=>{
+//     return a+b;
+
+// }
+// type FuncType = ReturnType<typeof myfunc>
+
 // InstanceType<Type>
 
+// class SampleClass {
+//   constructor(
+//     public s: string,
+//     public t: string
+//   ) {}
+// }
+// type Random = InstanceType<typeof SampleClass>
+
+// const user: Random = {
+//   s: "44",
+//   t: "ssds"
+// };
+
+
+// ------------------------------------------
+
+// Generics 
+
+// const func = <CustomType>(n:CustomType): CustomType => {
+//     let text: CustomType;
+//     return n;
+// }
+// const ans = func(20);
+
+
+// type Person = {
+//     name: string,
+//     age : number,
+// }
 
 
 
+// const func = <T>(n:T): T => {
+    
+//     return n;
+// }
+
+// const person1 : Person={
+//     name: "Krish",
+//     age: 100
+// }
+
+// const ans = func<Person>(person1);
+
+// generic in arr 
+// const arr : number[] = []
+// const arr2: Array<number>=[]
+
+
+// const func = <T,U>(n:T,o:U):{n:T,o:U} => {
+//     return {n,o}
+// };
+
+// const ans = func<number,string>(20,"lol")
+
+// type Person = {
+//     name : string,
+//     age: number
+// }
+// type Person2 = {
+//     name : string,
+//     age: number,
+//     email:string
+// }
+
+// const user:Person={
+//     name: "krishna",
+//     age:100,
+// }
+// const user2:Person2={
+//     name: "krishna",
+//     age:100,
+//     email:"adf@gmail.com"
+// }
+
+// const func = <T,U extends T>(n:T,o:U):{n:T,o:U} => {
+//     return {n,o}
+// };
+
+// const ans = func<Person,Person2>(user,user2)
 
 
 
+// ------------------------------------------
+
+type Person ={
+    name: string;
+    age: number;
+}
+
+const users: Person[]=[
+    {
+        name:"krish",
+        age:100
+    },
+    {
+        name:"gopal",
+        age:200
+    },
+    {
+        name:"rajesh",
+        age:300
+    }
+]
+
+const filterByPeoples = <T , U extends keyof T>(
+    arr: T[],
+    property: U,
+    value: T[U]
+): T[] => {
+    return arr.filter((item) => item[property] === value);
+};
+
+const filteredPeopleByName = filterByPeoples(users,"name","krish");
+
+const filteredPeopleByAge = filterByPeoples(users,"age",100);
+
+console.log(filteredPeopleByAge);
 
 
 
