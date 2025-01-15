@@ -1,0 +1,158 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  --primary-color: #2381b8;
+  --danger-color: crimson;
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --border-color: rgba(149, 149, 149, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.container > form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.container > form > input {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.container > form > button {
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.container > form > button:hover {
+  background-color: #1c6c99;
+}
+
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todoContainer > p {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-color);
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff6f6;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo > input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.todo > p {
+  flex-grow: 1;
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.todo > button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--danger-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: opacity 0.3s;
+}
+
+.todo > button:hover {
+  opacity: 0.8;
+}
+
+.textCut {
+  text-decoration: line-through;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .container > form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .container > form > button {
+    width: 100%;
+  }
+
+  .todo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo > button {
+    align-self: flex-end;
+  }
+}
