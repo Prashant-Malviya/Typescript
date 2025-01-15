@@ -201,26 +201,288 @@
 // console.log("weight",newPlayer.weight);
 // console.log("power",newPlayer.myPower());
 
-class Fruites {
-    private fruites: string;
-    private noOfFruites: number;
-  
-    constructor(fruites: string, noOfFruites: number) {
-      this.fruites = fruites;
-      this.noOfFruites = noOfFruites;
-    }
-  
-    get getFruites(): string {
-      return this.fruites;
-    }
-  
-    set setFruites(fruites: string) {
-      this.fruites = fruites;
-    }
-  }
-  
-  const apples = new Fruites("apple", 20);
-  console.log(apples.getFruites);  // Output: apple
-  
-apples.setFruites = "orange"
-console.log(apples.getFruites);
+// class Fruites {
+//     private fruites: string;
+//     private noOfFruites: number;
+
+//     constructor(fruites: string, noOfFruites: number) {
+//       this.fruites = fruites;
+//       this.noOfFruites = noOfFruites;
+//     }
+
+//     get getFruites(): string {
+//       return this.fruites;
+//     }
+
+//     set setFruites(fruites: string) {
+//       this.fruites = fruites;
+//     }
+//   }
+
+//   const apples = new Fruites("apple", 20);
+//   console.log(apples.getFruites);  // Output: apple
+
+// apples.setFruites = "orange"
+// console.log(apples.getFruites);
+
+// interface ProductType {
+//   name: string;
+//   price: number;
+//   stock: number;
+//   id: string;
+//   offer?: boolean;
+// }
+
+// interface GiveId {
+//   getId : ()=> string;
+// }
+
+// class Product implements ProductType,GiveId {
+//   public id: string = String(Math.random() * 1000);
+
+//   constructor(
+//     public name: string,  
+//    public  price: number,  
+//    public  stock: number 
+//   ) {}
+//    getId = () => this.id;
+// }
+
+// const product1 = new Product("Mackbook",2020020,30)
+
+
+// ----------------------------------------------
+
+// Type Assertion 
+
+// const btn = document.getElementById("btn") as HTMLElement;
+// const btn = document.getElementById("btn")!;
+// const btn = <HTMLElement>document.getElementById("btn");
+
+// // const img = document.getElementById("myImg") as HTMLImageElement;
+// const img = document.querySelector("myImg")!;
+
+// img.src = 'https://www.google.com/'
+
+
+// btn.onclick
+
+// -----------------------------
+// accesing form 
+// const form = document.getElementById("myform") as HTMLFormElement;
+
+// const myinput = document.querySelector("form > input") as HTMLInputElement
+
+
+// form.onsubmit=(e: SubmitEvent)=>{
+
+//     e.preventDefault()
+
+//     const value = Number(myinput.value);
+
+//     const h2 = document.createElement("h2");
+
+//     h2.textContent = String(value + 20)
+
+//     const body = document.querySelector("body");
+//     body?.append(h2)
+    
+// }
+
+// -----------------------------------
+// Type Assertion 
+
+// interface Person{
+//     // name:string,
+//     // email:string
+//     [key:string] : string;
+// }
+
+// const myObj:Person = {
+
+//     name: "Krishna",
+//     email: "krishna@gmail.com"
+// }
+
+// const getName = (): string=> {
+//     return myObj.name
+// }
+
+// const getEmail = (): string =>{
+//     return myObj.email;
+// }
+
+// const getData = (key: keyof Person): string => {
+//     return myObj[key];
+// }
+
+// let key = "name";
+
+// console.log(key as keyof Person);
+
+
+// ---------------------------------------
+
+// Type Utitlity 
+
+// Partial<Type>
+// Required<Type>
+// Readonly<Type>
+// Record<Keys,Type>
+// Pick<TypeError,Keys>
+// Omit<Type,Keys>
+// Exclude<TypeError,ExcludedUnion>
+// Extract<TypeError,Union>
+// NonNullable<Type>
+// ConstructorParameters<Type>
+// ReturnType<Type>
+// InstanceType<Type>
+
+
+// Partial<Type> --------------------------
+
+// type User = {
+//     name: string,
+//     email: string
+// }
+
+// type User2 = Partial<User>
+
+
+// Required<Type> - opposite of partial <---------------
+
+// type User = {
+//     name?: string,
+//     email?: string,
+// }
+
+// type User2 = Required<User>
+
+// const user : Required<User>={
+//     name:"prashant",
+//     email:"prashant@gmail.com"
+// }
+
+// Readonly<Type> <----------------------------
+
+// type User = {
+//     name: string,
+//     email: string,
+// }
+
+// type User2 = Readonly<User>
+
+// const user: User2={
+//     name: "prashant",
+//     email: "prashant@gmail.com",
+// }
+
+// user.name = "krishna"
+
+// Record<Keys,Type> ----------------------------------
+
+// type User = {
+//     name: string;
+//     email: string;
+// } 
+
+
+// type User2 = Record<"name"|"email"|"gender",string>
+
+//Example
+
+// interface UserInfo{
+//     age:number;
+// }
+
+// type UserName = "john" | "levi" | "elon" | "jack";
+
+// const users : Record<UserName, UserInfo> = {
+//     john : {age : 32},
+//     levi : {age : 32},
+//     elon : {age : 32},
+//     jack : {age : 32},
+// }
+
+
+
+// Pick <Type,Keys> ---------------------------
+
+// interface OrderInfo{
+//     readonly id: string,
+//     user: string,
+//     city: string,
+//     state: string,
+//     country: string,
+//     status: string;
+// }
+
+// type ShippingInfo = Pick<OrderInfo,"city"|"state"|"country">
+
+// Omit<Type,Keys> 
+
+// interface ShippingInfo {
+//     city: string,
+//     state: string,
+//     country: string,
+// }
+
+// type Random = Omit<ShippingInfo,"country">
+
+
+
+// Exclude<TypeError,ExcludedUnion>
+
+// type MyUnion = string | number | boolean
+
+// type Random = Exclude<MyUnion, boolean >
+
+
+// Extract<TypeError,Union>
+
+// type MyUnion = string | number | boolean
+
+// type Random = Extract<MyUnion, boolean >
+
+
+// NonNullable<Type>
+
+// type MyUnion = string | number | boolean | null | undefined
+
+// type Random = NonNullable<MyUnion>
+
+
+// Parameters<Type>
+
+// const myFunc = (a:number,b:string)=>{
+//     console.log(a+b);
+    
+// }
+
+// type Random = Parameters<typeof myFunc>
+
+
+// ConstructorParameters<Type>
+
+
+
+
+
+
+
+
+// ReturnType<Type>
+// InstanceType<Type>
+
+
+
+
+
+
+
+
+
+
+
+
+
