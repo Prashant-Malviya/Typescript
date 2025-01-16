@@ -5,22 +5,19 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo TS</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="app"></div>
-
     <div class="container">
       <h1>Todo App</h1>
 
       <form id="myForm">
-
-        <input required type="text" placeholder="title" name="title">
-
+        <input required type="text" placeholder="Title" name="title" />
         <button type="submit">Add</button>
       </form>
 
       <div class="todoContainer">
-        <p>No Todo Yet</p>
+        <p id="placeholder">No Todo Yet</p>
       </div>
     </div>
 
