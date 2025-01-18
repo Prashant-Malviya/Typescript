@@ -1,22 +1,36 @@
-import React, { ReactNode } from 'react'
+import React, { Dispatch, SetStateAction, ReactNode } from "react";
 
 type PropsType = {
   heading: string;
   count: number;
-  func1 : (b:string,a:string)=>void;
-  children: ReactNode
-}
+  func1: (b: string, a: string) => void;
+  children: ReactNode;
+};
 
-function Box({heading,count,func1,children}: PropsType) {
+type InputValType = string | number;
 
-  func1("three","four");
-
+const Box = <T extends InputValType>({
+  label,
+  value,
+  setter
+}: {
+  label: string;
+  value: T;
+  setter:  Dispatch<SetStateAction<T>>
+}) => {
   return (
     <div>
-      <h1>{heading} and {count}</h1>
-      <h1>{children}</h1>
+      <form>
+        <label>{label}</label>
+        <input 
+        type="text" 
+        value={value} 
+        onChange={(e) => setter(e.target.value as T)}
+         />
+        <button type="submit">Submit</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Box
+export default Box;
