@@ -16,7 +16,12 @@ type PropsType = {
   editHandler: (id: TodoItemType["id"], newTitle: string) => void;
 };
 
-const TodoItems = ({ todo, completeHandler, deleteHandler,editHandler }: PropsType) => {
+const TodoItems = ({
+  todo,
+  completeHandler,
+  deleteHandler,
+  editHandler,
+}: PropsType) => {
   const [todos, setTodos] = useState<TodoItemType[]>([]);
 
   const [editActive, setEditActive] = useState<boolean>(false);
@@ -36,8 +41,8 @@ const TodoItems = ({ todo, completeHandler, deleteHandler,editHandler }: PropsTy
               value={textVal}
               onChange={(e) => setTextVal(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && textVal !== ""){
-                  editHandler(todo.id,textVal)
+                if (e.key === "Enter" && textVal !== "") {
+                  editHandler(todo.id, textVal);
                   setEditActive(false);
                 }
               }}
@@ -52,9 +57,7 @@ const TodoItems = ({ todo, completeHandler, deleteHandler,editHandler }: PropsTy
           />
 
           <Button onClick={() => setEditActive((prev) => !prev)}>
-            {
-              editActive ? <Check /> : <Edit />
-            }
+            {editActive ? <Check /> : <Edit />}
           </Button>
           <Button onClick={() => deleteHandler(todo.id)}>
             <Delete />

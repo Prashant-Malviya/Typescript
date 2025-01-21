@@ -51,9 +51,9 @@ const App = () => {
     setTitle("");
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     saveTodos(todos);
-  },[todos])
+  }, [todos]);
 
   return (
     <Container maxWidth="sm" sx={{ height: "100vh" }}>
