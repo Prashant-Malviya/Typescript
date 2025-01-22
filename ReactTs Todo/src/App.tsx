@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import TodoItems from "./components/TodoItems";
-import { saveTodos } from "./utils/features";
+import { getTodos, saveTodos } from "./utils/features";
 
 const App = () => {
-  const [todos, setTodos] = useState<TodoItemType[]>([]);
+  const [todos, setTodos] = useState<TodoItemType[]>(getTodos());
 
   const [title, setTitle] = useState<TodoItemType["title"]>("");
 
