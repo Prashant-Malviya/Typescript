@@ -1,5 +1,10 @@
-import { configureStore,createAction,createReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import {
+  configureStore,
+  createAction,
+  createReducer,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 
 // this is using rootreducer method --------------------
 
@@ -22,37 +27,31 @@ import { configureStore,createAction,createReducer, createSlice, PayloadAction }
 
 // export const store = configureStore({reducer: rootReducer});
 
-
 //-----------------using create slice------------
 
-
-interface StateType{
-    count: number;
+interface StateType {
+  count: number;
 }
 
-const initialState : StateType = {count: 0};
-
+const initialState: StateType = { count: 0 };
 
 const rootSlice = createSlice({
-    name: "counter",
-    initialState,
-    reducers:{
-        increament:(state)=>{
-            state.count += 1
-        },
-        decreament:(state)=>{
-            state.count -= 1
-        },
-        increamentByValue:(state,action:PayloadAction<number>)=>{
-            state.count += action.payload;
-        }
-    }
-})
+  name: "counter",
+  initialState,
+  reducers: {
+    increament: (state) => {
+      state.count += 1;
+    },
+    decreament: (state) => {
+      state.count -= 1;
+    },
+    increamentByValue: (state, action: PayloadAction<number>) => {
+      state.count += action.payload;
+    },
+  },
+});
 
-export const{increament,decreament,increamentByValue} = rootSlice.actions
+export const { increament, decreament, increamentByValue } = rootSlice.actions;
 // export const reducer = rootSlice.reducer
 
-
-export const store = configureStore({reducer: rootSlice.reducer});
-
-
+export const store = configureStore({ reducer: rootSlice.reducer });

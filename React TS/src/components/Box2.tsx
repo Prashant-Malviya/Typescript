@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Box2 = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Box2
+export default Box2;

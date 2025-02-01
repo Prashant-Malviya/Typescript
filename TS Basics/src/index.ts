@@ -477,10 +477,9 @@
 //   t: "ssds"
 // };
 
-
 // ------------------------------------------
 
-// Generics 
+// Generics
 
 // const func = <CustomType>(n:CustomType): CustomType => {
 //     let text: CustomType;
@@ -488,16 +487,13 @@
 // }
 // const ans = func(20);
 
-
 // type Person = {
 //     name: string,
 //     age : number,
 // }
 
-
-
 // const func = <T>(n:T): T => {
-    
+
 //     return n;
 // }
 
@@ -508,10 +504,9 @@
 
 // const ans = func<Person>(person1);
 
-// generic in arr 
+// generic in arr
 // const arr : number[] = []
 // const arr2: Array<number>=[]
-
 
 // const func = <T,U>(n:T,o:U):{n:T,o:U} => {
 //     return {n,o}
@@ -545,46 +540,38 @@
 
 // const ans = func<Person,Person2>(user,user2)
 
-
-
 // ------------------------------------------
 
-type Person ={
-    name: string;
-    age: number;
-}
-
-const users: Person[]=[
-    {
-        name:"krish",
-        age:100
-    },
-    {
-        name:"gopal",
-        age:200
-    },
-    {
-        name:"rajesh",
-        age:300
-    }
-]
-
-const filterByPeoples = <T , U extends keyof T>(
-    arr: T[],
-    property: U,
-    value: T[U]
-): T[] => {
-    return arr.filter((item) => item[property] === value);
+type Person = {
+  name: string;
+  age: number;
 };
 
-const filteredPeopleByName = filterByPeoples(users,"name","krish");
+const users: Person[] = [
+  {
+    name: "krish",
+    age: 100,
+  },
+  {
+    name: "gopal",
+    age: 200,
+  },
+  {
+    name: "rajesh",
+    age: 300,
+  },
+];
 
-const filteredPeopleByAge = filterByPeoples(users,"age",100);
+const filterByPeoples = <T, U extends keyof T>(
+  arr: T[],
+  property: U,
+  value: T[U]
+): T[] => {
+  return arr.filter((item) => item[property] === value);
+};
+
+const filteredPeopleByName = filterByPeoples(users, "name", "krish");
+
+const filteredPeopleByAge = filterByPeoples(users, "age", 100);
 
 console.log(filteredPeopleByAge);
-
-
-
-
-
-

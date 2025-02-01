@@ -1,4 +1,10 @@
-import React, { createContext, FormEvent, ReactNode, useReducer, useState } from "react";
+import React, {
+  createContext,
+  FormEvent,
+  ReactNode,
+  useReducer,
+  useState,
+} from "react";
 import Box2 from "./components/Box2";
 import Boxes from "./components/Boxes";
 
@@ -18,29 +24,28 @@ import Boxes from "./components/Boxes";
 //   toggleTheme: () => {},
 // });
 
-
 type StateType = {
-  count:number
-}
+  count: number;
+};
 
-type ActionType = {type:"Increament";payload:number} | {type: "Decreament"; payload:number}
+type ActionType =
+  | { type: "Increament"; payload: number }
+  | { type: "Decreament"; payload: number };
 
+const reducer = (state: StateType, action: ActionType): StateType => {
+  switch (action.type) {
+    case "Increament":
+      return { count: state.count + action.payload };
+    case "Decreament":
+      return { count: state.count - action.payload };
+    default:
+      return state;
+  }
+};
 
-
-const reducer = (state: StateType,action:ActionType):StateType=>{
-switch (action.type) {
-  case "Increament":
-    return {count:state.count + action.payload}
-  case "Decreament":
-    return {count: state.count - action.payload}  
-  default:
-    return state;
-}
-}
-
-const initialState:StateType = {
+const initialState: StateType = {
   count: 0,
-}
+};
 
 function App() {
   // const heading = "Namaste India";
@@ -69,23 +74,23 @@ function App() {
   //   );
   // };
 
-
   // ------------------------
-  // use reducer 
+  // use reducer
 
-  const [state,dispatch] = useReducer(reducer,initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const increament = ():void=>{
+  const increament = (): void => {
     dispatch({
-      type:"Increament",
-      payload:1
-    }) }
-  const decreament = ():void=>{
+      type: "Increament",
+      payload: 1,
+    });
+  };
+  const decreament = (): void => {
     dispatch({
-      type:"Decreament",
-      payload:1
-    })
-  }
+      type: "Decreament",
+      payload: 1,
+    });
+  };
 
   return (
     <div>
@@ -127,17 +132,14 @@ function App() {
         <Boxes />
       </ThemeProvider> */}
 
-        <h1>count change</h1>
+      <h1>count change</h1>
 
-        <p>Count:  {state.count}</p>
+      <p>Count: {state.count}</p>
 
-        <button onClick={increament}>+</button>
-        <button onClick={decreament}>-</button>
-
+      <button onClick={increament}>+</button>
+      <button onClick={decreament}>-</button>
     </div>
   );
 }
 
-
-
-export default App
+export default App;

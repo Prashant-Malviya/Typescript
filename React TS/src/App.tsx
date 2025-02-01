@@ -1,21 +1,18 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { increamentByValue } from './redux/redux';
-import { StateType } from './types';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increamentByValue } from "./redux/redux";
+import { StateType } from "./types";
 
 const App = () => {
-
-  const [value,setValue] = useState<number>()
+  const [value, setValue] = useState<number>();
 
   const dispatch = useDispatch();
 
-  const count = useSelector((state:StateType)=> state.count)
+  const count = useSelector((state: StateType) => state.count);
 
-  const increamentByValueHandler = ()=>{
-
-    dispatch(increamentByValue())
-
-  }
+  const increamentByValueHandler = () => {
+    dispatch(increamentByValue());
+  };
 
   return (
     <div>
@@ -27,14 +24,14 @@ const App = () => {
       <button>-</button>
 
       <input
-      type='number'
-      value={value}
-      onChange={(e)=> setValue(Number(e.target.value))} />
+        type="number"
+        value={value}
+        onChange={(e) => setValue(Number(e.target.value))}
+      />
 
-    <button  onClick={increamentByValueHandler}>Add</button>
+      <button onClick={increamentByValueHandler}>Add</button>
     </div>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;
