@@ -4,7 +4,7 @@ import { ThemeContextType, ThemeType } from "../types/index";
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: "light",
-  toggleTheme: () => {},
+  toggleTheme: () => { },
 });
 
 const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -15,9 +15,11 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
+
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
+    
   );
 };
 
